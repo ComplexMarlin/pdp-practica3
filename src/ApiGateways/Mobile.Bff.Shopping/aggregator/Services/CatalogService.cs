@@ -19,17 +19,17 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator.Services
         {
             var request = new CatalogItemRequest { Id = id };
             var response = await _client.GetItemByIdAsync(request);
-            return MapToCatalogItemResponse(response);
+            return MapToCatalogItemResponse5(response);
         }
 
         public async Task<IEnumerable<CatalogItem>> GetCatalogItemsAsync(IEnumerable<int> ids)
         {
             var request = new CatalogItemsRequest { Ids = string.Join(",", ids), PageIndex = 1, PageSize = 10 };
             var response = await _client.GetItemsByIdsAsync(request);
-            return response.Data.Select(MapToCatalogItemResponse);
+            return response.Data.Select(MapToCatalogItemResponse5);
         }
 
-        private CatalogItem MapToCatalogItemResponse(CatalogItemResponse catalogItemResponse)
+        private CatalogItem MapToCatalogItemResponse5(CatalogItemResponse catalogItemResponse)
         {
             return new CatalogItem
             {
