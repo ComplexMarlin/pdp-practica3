@@ -16,6 +16,7 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator.Services
 
         public OrderApiClient(HttpClient httpClient, ILogger<OrderApiClient> logger, IOptions<UrlsConfig> config)
         {
+            //paradigmas de programacion
             _apiClient = httpClient;
             _logger = logger;
             _urls = config.Value;
@@ -26,7 +27,7 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator.Services
             var uri = _urls.Orders + UrlsConfig.OrdersOperations.GetOrderDraft();
             var content = new StringContent(JsonSerializer.Serialize(basket), System.Text.Encoding.UTF8, "application/json");
             var response = await _apiClient.PostAsync(uri, content);
-
+                      
             response.EnsureSuccessStatusCode();
 
             var ordersDraftResponse = await response.Content.ReadAsStringAsync();
